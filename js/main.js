@@ -38,7 +38,7 @@ registerForm.addEventListener('submit', function(e) {
  
 
 function inputRequiredErrorMessage(input, fieldName){
-  if (input.value == "") {
+  if (input.value.trim() == "") {
     return fieldName + 'is required<br>';
   }
   
@@ -46,15 +46,24 @@ function inputRequiredErrorMessage(input, fieldName){
 
 }
 
+function selectBirthYearSelectHTML(startYear, endYear, defaultYear){
 
-let selectBirthYearHTML = "";
-for (let year = 2023; year >= 1923; year--) {
-  if (year == 1990) {
-    selectBirthYearHTML += `<option selected>${year}</option>`
-  } else {
-    selectBirthYearHTML += `<option>${year}</option>`
+  let selectBirthYearHTML = "";
+  for (let year = 2023; year >= 1923; year--) {
+    if (year == 1990) {
+      selectBirthYearHTML += `<option selected>${year}</option>`
+    } else {
+      selectBirthYearHTML += `<option>${year}</option>`
+    }
   }
+
+  return selectBirthYearHTML;
+
 }
+
+let startYear = new Date().getFullYear()
+let endYear = startYear - 100;
+
 // console.log(selectBirthYearHTML);
-document.getElementById('selectBirthYear').innerHTML = selectBirthYearHTML;
+document.getElementById('selectBirthYear').innerHTML = selectBirthYearSelectHTML(2023, 1923, 1990);
 
